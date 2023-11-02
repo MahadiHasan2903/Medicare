@@ -1,14 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
 import heroImg01 from "../assets/images/hero-img01.png";
 import heroImg02 from "../assets/images/hero-img02.png";
 import heroImg03 from "../assets/images/hero-img03.png";
 import icon01 from "../assets/images/icon01.png";
 import icon02 from "../assets/images/icon02.png";
 import icon03 from "../assets/images/icon03.png";
-import { Link } from "react-router-dom";
-import { BsArrowRight } from "react-icons/bs";
+import faqImg from "../assets/images/faq-img.png";
 import About from "../components/About/About";
 import ServiceList from "../components/Services/ServiceList";
+import DoctorList from "../components/Doctors/DoctorList";
+import Features from "../components/Features/Features";
+import FaqList from "../components/Faq/FaqList";
+import Testimonial from "../components/Testomonials/Testimonial";
 
 const Home = () => {
   return (
@@ -175,8 +180,57 @@ const Home = () => {
       </section>
       {/* ==========Service section  end========== */}
 
-      {/* ==========Feature section  start========== */}
-      {/* ==========Feature section  end========== */}
+      <Features />
+
+      {/* ==========Doctor section  start========== */}
+      <section>
+        <div className="conatiner">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">Our Great Doctors</h2>
+            <p className="text-para text-center">
+              World class care for eeryone. Our health System offers unmatched
+              exper healt care.
+            </p>
+          </div>
+          <DoctorList />
+        </div>
+      </section>
+      {/* ==========Doctor section  end========== */}
+
+      {/* ==========FAQ section  start========== */}
+      <section>
+        <div className="container">
+          <div className="flex justify-between gap-[50px] lg:gap-0">
+            <div className="w-1/2 hidden md:block">
+              <img src={faqImg} alt="faqImg" />
+            </div>
+
+            <div className="w-full md:w-1/2">
+              <h2 className="heading">
+                Most questions by our beloved patients
+              </h2>
+              <FaqList />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========FAQ section  end========== */}
+
+      {/* ==========Testomonial section  start========== */}
+      <section>
+        <div className="container">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="text-center heading">What our patients say</h2>
+            <p className="text-center text_para">
+              World class care for everyone. Our health System offers unmatched,
+              expert health care.
+            </p>
+          </div>
+          <Testimonial />
+        </div>
+      </section>
+      {/* ==========Testomonial section  end========== */}
     </>
   );
 };
