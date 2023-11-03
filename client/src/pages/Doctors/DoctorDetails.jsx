@@ -3,7 +3,7 @@ import doctorImg from "../../assets/images/doctor-img02.png";
 import startIcon from "../../assets/images/Star.png";
 import DoctorAbout from "./DoctorAbout";
 import DoctorFeedback from "./DoctorFeedback";
-import SlidePanel from "./SlidePanel";
+import SidePanel from "./SidePanel";
 
 const DoctorDetails = () => {
   const [tab, setTab] = useState("about");
@@ -73,7 +73,7 @@ const DoctorDetails = () => {
           </div>
 
           <div>
-            <SlidePanel />
+            <SidePanel />
           </div>
         </div>
       </div>
