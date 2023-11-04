@@ -7,6 +7,7 @@ const {
   deleteDoctorController,
   getSingleDoctorController,
   getAllDoctorsController,
+  getDoctorProfileController,
 } = require("../controllers/doctorController");
 const {
   restrictedUser,
@@ -39,6 +40,13 @@ router.get(
   authMiddleware,
   restrictedUser(["admin"]),
   getAllDoctorsController
+);
+
+router.get(
+  "/profile/me",
+  authMiddleware,
+  restrictedUser(["doctor"]),
+  getDoctorProfileController
 );
 
 module.exports = router;

@@ -110,9 +110,38 @@ const getAllDoctorsController = async (req, res) => {
   }
 };
 
+const getDoctorProfileController = async (req, res) => {
+  const doctorId = req.userId;
+  try {
+    const doctor = await Doctor.findById(doctorId);
+
+    if (!doctor) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Doctor not found" });
+    }
+
+    // Destructure the doctor document and exclude sensitive data
+    const { password, ...rest } = doctor._doc;
+
+    const appointments = await Booking.find({ doctor: doctorId });
+
+    res.status(200).json({
+      success: true,
+      message: "Profile information retrieved successfully",
+      data: { ...rest, appointments },
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong" });
+  }
+};
+
 module.exports = {
   updateDoctorController,
   deleteDoctorController,
   getSingleDoctorController,
   getAllDoctorsController,
+  getDoctorProfileController,
 };

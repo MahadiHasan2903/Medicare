@@ -6,7 +6,6 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const cloudinary = require("cloudinary");
 const auth = require("./routes/authRoute");
 const user = require("./routes/userRoute");
 const doctor = require("./routes/doctorRoute");
@@ -25,13 +24,6 @@ app.use(
     credentials: true,
   })
 );
-
-//cloudinary config
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));

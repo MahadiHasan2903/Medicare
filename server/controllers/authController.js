@@ -103,6 +103,9 @@ const loginController = async (req, res) => {
     );
 
     const { password: userPassword, role, appointments, ...rest } = user._doc;
+    const data = { ...rest, role };
+
+    console.log(data);
 
     res.status(200).json({
       success: true,

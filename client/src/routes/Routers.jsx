@@ -6,7 +6,10 @@ import Doctors from "../pages/Doctors/Doctors";
 import DoctorDetails from "../pages/Doctors/DoctorDetails";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
+import MyAccount from "../Dashboard/user-account/MyAccount";
+import Dashboard from "../Dashboard//doctor-account/Dashboard";
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Routers = () => {
   return (
@@ -19,6 +22,22 @@ const Routers = () => {
       <Route path="/doctor/:id" element={<DoctorDetails />} />
       <Route path="/register" element={<Signup />} />
       <Route path="/login" element={<Signin />} />
+      <Route
+        path="/users/profile/me"
+        element={
+          <ProtectedRoute allowedRoutes={["patient"]}>
+            <MyAccount />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/doctors/profile/me"
+        element={
+          <ProtectedRoute allowedRoutes={["doctor"]}>
+            <MyAccount />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };

@@ -1,4 +1,6 @@
 const User = require("../models/UserSchema");
+const Booking = require("../models/BookingSchema");
+const Doctor = require("../models/DoctorSchema");
 
 const updateUserController = async (req, res) => {
   try {
@@ -93,9 +95,61 @@ const getAllUsersController = async (req, res) => {
   }
 };
 
+const getUserProfileController = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    // Destructure the user document and exclude sensitive data
+    const { password, ...userInfo } = user._doc;
+
+    res.status(200).json({
+      success: true,
+      message: "Profile information retrieved successfully",
+      data: { ...userInfo },
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong" });
+  }
+};
+
+const getMyAppointmentController = async (req, res) => {
+  try {
+    // Retrieve appointments from booking of a specific user
+    const bookings = await Booking.find({ user: req.userId });
+
+    // Extract unique doctor IDs from appointment bookings
+    const doctorIds = [...new Set(bookings.map((el) => el.doctor.id))];
+
+    // Retrieve doctors using doctor IDs, excluding sensitive data like passwords
+    const doctors = await Doctor.find({ _id: { $in: doctorIds } }).select(
+      "-password"
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Appointments retrieved successfully",
+      data: doctors,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong" });
+  }
+};
+
 module.exports = {
   updateUserController,
   deleteUserController,
   getSingleUserController,
   getAllUsersController,
+  getUserProfileController,
+  getMyAppointmentController,
 };

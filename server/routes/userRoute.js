@@ -6,6 +6,8 @@ const {
   deleteUserController,
   getSingleUserController,
   getAllUsersController,
+  getUserProfileController,
+  getMyAppointmentController,
 } = require("../controllers/userController");
 
 const {
@@ -25,6 +27,21 @@ router.delete(
   restrictedUser(["patient"]),
   deleteUserController
 );
+
+router.get(
+  "/appointments/my-appointment",
+  authMiddleware,
+  restrictedUser(["patient"]),
+  getMyAppointmentController
+);
+
+router.get(
+  "/profile/me",
+  authMiddleware,
+  restrictedUser(["patient"]),
+  getUserProfileController
+);
+
 router.get(
   "/:id",
   authMiddleware,
