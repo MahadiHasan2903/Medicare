@@ -7,6 +7,10 @@ const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const cloudinary = require("cloudinary");
+const auth = require("./routes/authRoute");
+const user = require("./routes/userRoute");
+const doctor = require("./routes/doctorRoute");
+const review = require("./routes/reviewRoute");
 
 dotenv.config();
 
@@ -35,27 +39,10 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/", express.static(path.join(__dirname, "./uploads")));
 
-// const user = require("./controller/User");
-// const shop = require("./controller/Shop");
-// const product = require("./controller/Product");
-// const event = require("./controller/Event");
-// const coupon = require("./controller/CouponCode");
-// const payment = require("./controller/Payment");
-// const order = require("./controller/Order");
-// const conversation = require("./controller/Conversation");
-// const message = require("./controller/Message");
-// const withdraw = require("./controller/Withdraw");
-
-// app.use("/api/v1/user", user);
-// app.use("/api/v1/shop", shop);
-// app.use("/api/v1/product", product);
-// app.use("/api/v1/event", event);
-// app.use("/api/v1/coupon", coupon);
-// app.use("/api/v1/payment", payment);
-// app.use("/api/v1/order", order);
-// app.use("/api/v1/conversation", conversation);
-// app.use("/api/v1/message", message);
-// app.use("/api/v1/withdraw", withdraw);
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/user", user);
+app.use("/api/v1/doctor", doctor);
+app.use("/api/v1/review", review);
 
 // Server
 const port = process.env.PORT || 8080;
