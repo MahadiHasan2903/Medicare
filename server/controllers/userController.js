@@ -21,6 +21,7 @@ const updateUserController = async (req, res) => {
       message: "Successfully Updated",
     });
   } catch (error) {
+    console.log(error);
     return res
       .status(500)
       .json({ success: false, message: "Failed to update" });

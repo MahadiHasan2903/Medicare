@@ -1,4 +1,5 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Services from "../pages/Services";
 import Contact from "../pages/Contact";
@@ -7,9 +8,8 @@ import DoctorDetails from "../pages/Doctors/DoctorDetails";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import MyAccount from "../Dashboard/user-account/MyAccount";
-import Dashboard from "../Dashboard//doctor-account/Dashboard";
-import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
   return (
@@ -20,8 +20,24 @@ const Routers = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/doctors" element={<Doctors />} />
       <Route path="/doctor/:id" element={<DoctorDetails />} />
-      <Route path="/register" element={<Signup />} />
-      <Route path="/login" element={<Signin />} />
+
+      <Route
+        path="/register"
+        element={
+          <PrivateRoute>
+            <Signup />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/login"
+        element={
+          <PrivateRoute>
+            <Signin />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/users/profile/me"
         element={

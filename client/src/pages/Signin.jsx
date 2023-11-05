@@ -44,7 +44,7 @@ const Signin = () => {
 
         toast.success(message);
         setLoading(false);
-        navigate("/");
+        navigate("/users/profile/me");
       }
     } catch (error) {
       toast.error(error.message);

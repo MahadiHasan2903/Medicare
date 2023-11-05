@@ -11,19 +11,19 @@ import {
 const socialLinks = [
   {
     path: "www.youtube.com",
-    icon: <AiFillYoutube className="group-hover:text-white w-4 h-5" />,
+    icon: <AiFillYoutube className="w-4 h-5 group-hover:text-white" />,
   },
   {
     path: "www.github.com",
-    icon: <AiFillGithub className="group-hover:text-white w-4 h-5" />,
+    icon: <AiFillGithub className="w-4 h-5 group-hover:text-white" />,
   },
   {
     path: "www.instagram.com",
-    icon: <AiOutlineInstagram className="group-hover:text-white w-4 h-5" />,
+    icon: <AiOutlineInstagram className="w-4 h-5 group-hover:text-white" />,
   },
   {
     path: "www.linkdin.com",
-    icon: <AiFillLinkedin className="group-hover:text-white w-4 h-5" />,
+    icon: <AiFillLinkedin className="w-4 h-5 group-hover:text-white" />,
   },
 ];
 
@@ -78,11 +78,14 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="pb-16 pt-10">
+    <footer className="pt-10 pb-16">
       <div className="container">
         <div className="flex justify-between flex-col md:flex-row flex-wrap gap-[30px]">
           <div>
-            <img src={logo} alt="logo" />
+            <Link to="/">
+              {" "}
+              <img src={logo} alt="logo" />
+            </Link>
             <p className="text-[16px] leading-7 font-[400] text-textColor mt-4">
               Copyright © {year} developed by Md. Mahadi Hasan all rights
               reserved
@@ -119,7 +122,7 @@ const Footer = () => {
           </div>
           <div>
             <h2 className="text-[20px] leading-[30px] font-[700] mb-6 text-headingColor mt-10">
-                want 
+              want
             </h2>
             <ul className="flex flex-col">
               {quickLink02.map((item, index) => (

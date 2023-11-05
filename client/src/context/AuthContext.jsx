@@ -43,7 +43,7 @@ const authReducer = (state, action) => {
 
 // Custom hook to access the auth context's values
 export const useAuth = () => {
-  return useContext(AuthContext);
+  return useContext(authContext);
 };
 
 // Provider component to wrap the application with the auth context
